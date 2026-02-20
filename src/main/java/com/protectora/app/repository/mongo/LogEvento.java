@@ -6,14 +6,21 @@ import java.time.LocalDateTime;
 
 @Document(collection = "audit_logs")
 public class LogEvento {
-    @Id private String id;
-    private LocalDateTime fecha = LocalDateTime.now();
+    
+    @Id
+    private String id;
+    
     private String accion;
-    private String detalles;
+    private String detalle;
+    private LocalDateTime timestamp;
 
-    public LogEvento(String accion, String detalles) {
+    public LogEvento() {
+    }
+
+    public LogEvento(String accion, String detalle) {
         this.accion = accion;
-        this.detalles = detalles;
+        this.detalle = detalle;
+        this.timestamp = LocalDateTime.now(); // Guarda la fecha y hora exacta automáticamente
     }
 
     public String getId() {
@@ -24,14 +31,6 @@ public class LogEvento {
         this.id = id;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
     public String getAccion() {
         return accion;
     }
@@ -40,12 +39,19 @@ public class LogEvento {
         this.accion = accion;
     }
 
-    public String getDetalles() {
-        return detalles;
+    public String getDetalle() {
+        return detalle;
     }
 
-    public void setDetalles(String detalles) {
-        this.detalles = detalles;
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
-    
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 }

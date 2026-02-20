@@ -20,7 +20,7 @@ public class Animal {
     @Enumerated(EnumType.STRING)
     private Enums.EstadoAnimal estado;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "especie_id")
     private Especie especie;
 

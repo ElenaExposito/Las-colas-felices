@@ -49,8 +49,15 @@ public class AnimalService {
 
         return actualizado;
     }
+
     //Consultas avanzadas
     public List<Animal> buscarDisponibles(Enums.TipoEspecie tipo) {
         return animalRepo.findByEstadoAndEspecie_Tipo(Enums.EstadoAnimal.DISPONIBLE, tipo);
     }
+
+    // Consulta Avanzada: Buscar por tipo de especie
+    public List<Animal> buscarPorEspecie(Enums.TipoEspecie tipo) {
+        return animalRepo.findByEstadoAndEspecie_Tipo(Enums.EstadoAnimal.DISPONIBLE, tipo);
+    }
+
 }
