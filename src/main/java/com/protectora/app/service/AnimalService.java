@@ -1,23 +1,20 @@
 package com.protectora.app.service;
 
 import com.protectora.app.model.Animal;
+import com.protectora.app.repository.mongo.LogEvento;
 import com.protectora.app.repository.AnimalRepository;
 import com.protectora.app.repository.mongo.HistorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AnimalService {
     @Autowired private AnimalRepository animalRepo;
     @Autowired private HistorialRepository historialRepo;
-
-    public Animal guardarAnimal(Animal animal) {
-        return animalRepo.save(animal);
-    }
-
     @Autowired private MongoTemplate mongoTemplate; // Para guardar el log rápido
 
-        public Animal registrarNuevoAnimal(Animal animal) {
+    public Animal registrarNuevoAnimal(Animal animal) {
         // 1. Guardamos en SQL
         Animal guardado = animalRepo.save(animal);
         

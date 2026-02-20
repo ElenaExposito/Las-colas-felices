@@ -1,4 +1,4 @@
-package com.protectora.app.model.mongo;
+package com.protectora.app.repository.mongo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
