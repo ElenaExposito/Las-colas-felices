@@ -15,5 +15,17 @@ public class AnimalService {
         return animalRepo.save(animal);
     }
 
-    // TODO: amplia esto con los logs
+    @Autowired private MongoTemplate mongoTemplate; // Para guardar el log rápido
+
+        public Animal registrarNuevoAnimal(Animal animal) {
+        // 1. Guardamos en SQL
+        Animal guardado = animalRepo.save(animal);
+        
+        // 2. INTEGRAMOS: Creamos log en Mongo
+        LogEvento log = new LogEvento("CREAR_ANIMAL", 
+            "Se ha registrado a " + guardado.getNombre() + " con ID: " + guardado.getId());
+        mongoTemplate.save(log);
+        
+        return guardado;
+    }
 }
