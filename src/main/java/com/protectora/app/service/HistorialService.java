@@ -39,4 +39,13 @@ public class HistorialService {
         );
         return mongoTemplate.aggregate(agg, "audit_logs", org.bson.Document.class).getMappedResults();
     }
+
+public List<org.bson.Document> obtenerEstadisticasDeAcciones() {
+    // Agregación: Cuenta cuántos logs hay por tipo de acción
+    org.springframework.data.mongodb.core.aggregation.Aggregation agg =
+        org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation(
+            org.springframework.data.mongodb.core.aggregation.Aggregation.group("accion").count().as("total")
+    );
+    return mongoTemplate.aggregate(agg, "audit_logs", org.bson.Document.class).getMappedResults();
+}
 }
